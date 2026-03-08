@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.shenjianyoung.weverse.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_home_to_chatroom"
+            app:destination="@+id/navigation_chatroom" />
+        <action
+            android:id="@+id/action_home_to_add_member"
+            app:destination="@+id/navigation_add_member" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_chatroom"
+        android:name="com.shenjianyoung.weverse.ui.chatroom.ChatRoomFragment"
+        tools:layout="@layout/fragment_chatroom" />
+
+    <fragment
+        android:id="@+id/navigation_add_member"
+        android:name="com.shenjianyoung.weverse.ui.addmember.AddMemberFragment" />
+
+</navigation>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"> <!-- 关键：设置为椭圆 -->
+
+    <!-- 填充颜色 -->
+    <solid android:color="#B5ADB0" />
+
+    <!-- 边框（可选） -->
+    <stroke
+        android:color="#CCCCCC"
+        android:width="2dp" />
+
+    <!-- 强制宽高相等（可选，主要是为了在预览中呈现正圆） -->
+    <size
+        android:height="40dp"
+        android:width="40dp" />
+</shape>
