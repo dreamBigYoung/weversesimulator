@@ -20,6 +20,8 @@ class MemberViewModel(
 
     val addResult = MutableLiveData<Boolean>()
 
+    val modifyResult = MutableLiveData<Boolean>()
+
     fun addAvatar(uri: Uri, memberName: String) {
         viewModelScope.launch {
 
@@ -39,8 +41,17 @@ class MemberViewModel(
     fun addMember(name: String, avatar: String) {
 
         viewModelScope.launch {
-            repository.addMember(name, avatar)
-            addResult.postValue(true)
+            val members = repository.getMembers()
+            val find = members.find {
+                it.name == name
+            }
+            if (find != null) {
+                //修改头像
+                modifyResult.postValue(true)
+            } else {
+                repository.addMember(name, avatar)
+                addResult.postValue(true)
+            }
         }
 
     }

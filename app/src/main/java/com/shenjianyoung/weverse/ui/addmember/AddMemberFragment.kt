@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.shenjianyoung.weverse.R
 import com.shenjianyoung.weverse.databinding.FragmentAddMemberBinding
 import com.shenjianyoung.weverse.utils.IMGUtils
@@ -47,6 +48,8 @@ class AddMemberFragment : Fragment(R.layout.fragment_add_member) {
             if (it.isNotEmpty()) {
                 Glide.with(requireContext())
                     .load(it)
+                    .skipMemoryCache(true) // 跳过内存缓存
+                    .diskCacheStrategy(DiskCacheStrategy.NONE) // 跳过磁盘缓存
                     .circleCrop() // 直接裁剪为圆形
                     .placeholder(R.drawable.bg_circle) // 占位图
                     .into(binding.ivAvatarImage)
@@ -57,6 +60,13 @@ class AddMemberFragment : Fragment(R.layout.fragment_add_member) {
         viewModel.addResult.observe(viewLifecycleOwner) {
             if (it == true) {
                 Toast.makeText(requireContext(), "添加成功", Toast.LENGTH_SHORT).show()
+            }
+            findNavController().popBackStack()
+        }
+
+        viewModel.modifyResult.observe(viewLifecycleOwner) {
+            if (it == true) {
+                Toast.makeText(requireContext(), "修改成功", Toast.LENGTH_SHORT).show()
             }
             findNavController().popBackStack()
         }

@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.shenjianyoung.weverse.R
 import com.shenjianyoung.weverse.data.model.Member
 
@@ -30,6 +31,8 @@ class MemberAdapter(private val onItemClick: (Long, String, String) -> Unit) :
         holder.tvMember.text = member.name
         Glide.with(holder.ivAvatar)
             .load(member.avatar)
+            .skipMemoryCache(true) // 跳过内存缓存
+            .diskCacheStrategy(DiskCacheStrategy.NONE) // 跳过磁盘缓存
             .circleCrop() // 核心：直接裁剪为圆形
             .placeholder(R.drawable.bg_circle) // 占位图
             .into(holder.ivAvatar)

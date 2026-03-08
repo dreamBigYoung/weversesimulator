@@ -155,6 +155,7 @@ class ChatRoomFragment : Fragment(R.layout.fragment_chatroom) {
                 )
 
                 Log.d("screenshot", "保存路径: $path")
+                Toast.makeText(requireContext(), "保存路径: Pictures/WeverseShots", Toast.LENGTH_SHORT).show()
 
             }
 
